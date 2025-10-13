@@ -1,6 +1,6 @@
 # PDF Chatbot: A RAG Pipeline
 
-This project is a demonstration of a simple Retrieval Augmented Generation (RAG) pipeline, allowing you to interactively chat with your PDF documents using natural language. The pipeline is implemented in a Jupyter/Colab notebook and leverages state-of-the-art open-source tools for PDF processing, semantic search, and text generation.
+This project is a demonstration of a simple Retrieval Augmented Generation (RAG) pipeline, allowing you to interactively chat with your PDF documents using natural language. The pipeline is available both as a Jupyter/Colab notebook and as a **user-friendly Streamlit web application**. It leverages state-of-the-art open-source tools for PDF processing, semantic search, and text generation.
 
 ## Overview
 
@@ -24,7 +24,41 @@ The pipeline follows these main steps:
 
 ## Setup Instructions
 
-### 1. Install Dependencies
+### Option 1: Streamlit Web App (Recommended)
+
+The easiest way to use the PDF Chatbot is through the Streamlit web interface:
+
+#### 1. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 2. Run the Streamlit App
+
+```bash
+streamlit run app.py
+```
+
+#### 3. Use the Web Interface
+
+1. Upload a PDF document using the sidebar
+2. Click "Process PDF" to index the document
+3. Ask questions in the chat interface
+4. View answers with source page citations
+
+The Streamlit app provides:
+- 📄 Easy PDF upload interface
+- 💬 Interactive chat with context
+- 📚 Source citations showing which pages were used
+- ⚙️ Adjustable settings for retrieval parameters
+- 🎨 Clean, responsive UI
+
+### Option 2: Jupyter Notebook
+
+For a more hands-on approach or experimentation, use the Jupyter notebook:
+
+#### 1. Install Dependencies
 
 In your Jupyter or Colab environment, install the required packages:
 
@@ -36,11 +70,11 @@ In your Jupyter or Colab environment, install the required packages:
 %pip install -q faiss-cpu
 ```
 
-### 2. Upload PDF
+#### 2. Upload PDF
 
 Use the upload widget in the notebook to upload your PDF file. The path will be set to a variable (e.g., `PDF_PATH`).
 
-### 3. Run the Pipeline
+#### 3. Run the Pipeline
 
 The notebook will guide you through:
 
@@ -72,21 +106,38 @@ Type your questions to the chatbot and receive answers with references to the re
 
 ## Features
 
-- Supports arbitrary PDF documents.
-- Provides cited sources (page numbers) for each answer.
-- Efficient retrieval and context construction using FAISS and sentence transformers.
-- Memory-efficient LLM inference using quantization (where supported).
+- 🌐 **User-friendly Web UI** built with Streamlit
+- 📄 Supports arbitrary PDF documents
+- 📚 Provides cited sources (page numbers) for each answer
+- 💬 Interactive chat with context and history
+- 🔍 Efficient retrieval and context construction using FAISS and sentence transformers
+- 🤖 Memory-efficient LLM inference using quantization (where supported)
+- ⚙️ Adjustable retrieval parameters (top_k)
+- 🎨 Responsive and clean interface
 
 ## Customization
 
 - Swap in different LLMs or embedding models by changing the model name in setup.
 - Adjust chunk size and retrieval `top_k` for your use case.
 
+## Project Structure
+
+```
+PDF-Chatbot-A-RAG-Pipeline/
+├── app.py                              # Streamlit web application
+├── rag_utils.py                        # Core RAG pipeline utilities
+├── PDF_Chatbot_A_RAG_Pipeline.ipynb   # Original Jupyter notebook
+├── requirements.txt                    # Python dependencies
+├── .gitignore                          # Git ignore rules
+└── README.md                           # This file
+```
+
 ## Limitations
 
-- Designed for running in Colab or Jupyter with adequate resources (GPU recommended for LLM inference).
+- Requires adequate system resources (GPU recommended for faster LLM inference, but CPU works too).
 - Only processes text-based PDFs (not scanned images/OCR).
 - Not intended as a production system; for research/demo purposes.
+- First model load may take several minutes and download ~2GB of data.
 
 ## References
 
